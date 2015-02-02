@@ -2,7 +2,7 @@
   <body>
 
     <img src="http://www.netanimations.net/Moving-picture-of-vibrating-speaker-animated-gif.gif" />
-    <audio autoload="true" autoplay="true" controls="true">
+    <audio autoload="true" autoplay="true" controls="true" id="player">
       <source src="http://212.83.158.125:8000/salut-radio-192.mp3" type="audio/mpeg" />
       <source src="http://212.83.158.125:8000/salut-radio.aac" type="audio/aac" />
       <source src="http://212.83.158.125:8000/salut-radio.ogg" type="audio/ogg" />
@@ -10,6 +10,22 @@
       Ton navigateur ne sait pas jouer de la musique de radio
     </audio>
     <img src="http://www.netanimations.net/Moving-picture-of-vibrating-speaker-animated-gif.gif" />
+
+    <hr />
+
+    Chronom&egrave;tre de radio: <span id="duration"></span>
+    <script type="text/javascript">
+      var player = document.getElementById('player');
+      var timer = document.getElementById('duration');
+      setInterval(function() {
+        var duration = Math.ceil(player.currentTime);
+        var hours = parseInt(duration / 3600) % 24;
+        var minutes = parseInt(duration / 60) % 60;
+        var seconds = duration % 60;
+
+        timer.textContent = (hours < 10 ? "0" + hours : hours) + ":" + (minutes < 10 ? "0" + minutes : minutes) + ":" + (seconds  < 10 ? "0" + seconds : seconds);
+      }, 1000);
+    </script>
 
     <hr />
 
