@@ -1,8 +1,7 @@
 <html>
   <body>
-
-    <img src="http://www.netanimations.net/Moving-picture-of-vibrating-speaker-animated-gif.gif" />
-    <audio autoload="true" autoplay="true" controls="true" id="player">
+     <img src="http://www.netanimations.net/Moving-picture-of-vibrating-speaker-animated-gif.gif" />
+     <audio autoload="true" autoplay="true" controls="true" id="player">
       <source src="http://62.210.180.173:12345/salut-radio-160.mp3" type="audio/mpeg" />
       <source src="http://62.210.180.173:12345/salut-radio-128.aac" type="audio/aac" />
       <source src="http://62.210.180.173:12345/salut-radio-192.mp3" type="audio/mpeg" />
@@ -15,21 +14,25 @@
     </audio>
     <img src="http://www.netanimations.net/Moving-picture-of-vibrating-speaker-animated-gif.gif" />
 
+    <div>En cours: <span id="en-cours" style="font-size: 200%">...</span></div>
+    <div id="mode-live"><img src="http://www.roye-noyon.fr/medias/images/live.gif" /><br />live en cours !</div>
+    <div id="mode-paslive">playlist <span id="mode-playlist"></span></div>
+
     <hr />
 
     Chronom&egrave;tre de radio: <span id="duration"></span>
-    <script type="text/javascript">
-      var player = document.getElementById('player');
-      var timer = document.getElementById('duration');
-      setInterval(function() {
-        var duration = Math.ceil(player.currentTime);
-        var hours = parseInt(duration / 3600) % 24;
-        var minutes = parseInt(duration / 60) % 60;
-        var seconds = duration % 60;
 
-        timer.textContent = (hours < 10 ? "0" + hours : hours) + ":" + (minutes < 10 ? "0" + minutes : minutes) + ":" + (seconds  < 10 ? "0" + seconds : seconds);
-      }, 1000);
-    </script>
+    <hr />
+
+    <table id="historique">
+      <thead>
+        <tr>
+          <th>Historique</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
 
     <hr />
 
@@ -37,7 +40,57 @@
 
     <hr />
 
-    <a href="playlist.m3u">m3u</a>
+    <a href="playlist.m3u">fichier m3u pour &eacute;couter sur ton ordi</a>
 
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+    <script type="text/javascript">
+      /* Metadata */
+      function metadata() {
+        var on_metadata = function(infos) {
+          $('#en-cours').html(infos['current']['full_title']);
+          if (infos['current']['live']) {
+            $('#mode-live').show();
+            $('#mode-paslive').hide();
+          } else {
+            $('#mode-live').hide();
+            $('#mode-paslive').show();
+            $('#mode-playlist').html(infos['current']['mode']);
+          }
+          $('#historique tbody tr').remove();
+          for (var i = 0; i < infos['history'].length; i++) {
+            var entry = infos['history'][i];
+            var line = $('<tr></tr>');
+            line.append($('<td></td>').html(entry['full_title']));
+            $('#historique tbody').append(line);
+          }
+        };
+        var refresh_metadata = function() {
+          $.ajax({
+            url: 'http://62.210.180.173:12348/?action=infos&format=jsonp&callback=?',
+            dataType: 'json',
+            success: on_metadata
+          });
+        };
+        refresh_metadata();
+        setInterval(refresh_metadata, 5000);
+      };
+      metadata();
+
+      /* Chronometre */
+      function chronometre() {
+        var player = document.getElementById('player');
+        var timer = document.getElementById('duration');
+        setInterval(function() {
+          var duration = Math.ceil(player.currentTime);
+          var hours = parseInt(duration / 3600) % 24;
+          var minutes = parseInt(duration / 60) % 60;
+          var seconds = duration % 60;
+
+          timer.textContent = (hours < 10 ? "0" + hours : hours) + ":" + (minutes < 10 ? "0" + minutes : minutes) + ":" + (seconds  < 10 ? "0" + seconds : seconds);
+                                                                                                                                      }, 1000);
+      }
+      chronometre();
+    </script>
   </body>
 </html>
