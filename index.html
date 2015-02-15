@@ -105,9 +105,9 @@
         var on_metadata = function(infos) {
           if (infos['current']['live']) {
             if (infos['current']['live_artist'] == 'scc') {
-              $('#en-cours').html('salut c\'est cool en direct');
+              $('#en-cours').html('salut c\'est cool en direct ('+infos['current']['full_title']+')');
             } else {
-              $('#en-cours').html('live diffusion en direct live');
+              $('#en-cours').html('live diffusion en direct live ('+infos['current']['full_title']+')');
             }
           } else {
             $('#en-cours').html(infos['current']['full_title']);
