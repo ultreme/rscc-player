@@ -7,36 +7,40 @@
     <title>radio</title>
     <style type="text/css">
      body{
-       background-color: #00FF00;
+       background-color: #080;
+       margin: 0;
+       text-align: center;
      }
      #fond {
        background-image:url(giphy.gif);
-       position:absolute;
-       top:30%;
-       left:0px;
-       width:100%;
-       height:40%;
+       /*position:absolute;*/
+       /*top:30%;*/
+       /*left:0px;*/
+       width:300px;
+       height:300px;
        margin:0;
        z-index:-3;
      }
      input.casesalut {
-       position: absolute;
-       width:15%;
-       height:6%;
-       top:94%;
-       left:85%;
+     /*position: relative;*/
+       width:100%;
+       height:40px;
+       /*top:94%;
+       left:85%;*/
        margin:0px;
        background-color:white;
        border-width: 5px;
-       background-color: transparent;
+       background-color: #0f0;
        z-index:3;
      }
      .player{
-       position:absolute;
+     /*
+       position:relative;
        top:50%;
        left:50%;
        margin-left:-150px;
-       margin-top:-15px;
+     margin-top:-15px;
+     */
      }
      #mode-live{
        position:absolute;
@@ -54,89 +58,123 @@
      }
      #historique{
        /*            background-color: #00FF00;*/
-       position:absolute;
-       text-align: center;
+       /*position:absolute;*/
+       /*text-align: center;
        top:70%;
        left:50%;
        width:1000px;
        margin-left:-500px;
+       */
      }
+     table td {
+       padding:0; margin:0;
+     }
+
+     table {
+       border-collapse: collapse;
+     }
+          * { overflow: hidden; }
     </style>
   </head>
   <body>
-    <div id="fond">
-    </div>
-    <center><br><br>
-      <div>En cours: <br><br><span id="en-cours" style="font-size: 200%">...</span></div>
-      <center>
-        <div id="mode-live"><br /></div>
-        <div id="mode-paslive">playlist <span id="mode-playlist"></span></div>
-
-        <table id="historique">
-          <thead>
-            <tr>
-              <th>Historique<br><br></th>
+    <table border="0" width="100%" height="100%">
+      <tr height="50px">
+        <td width="300px" bgcolor="#ff0" align="center">
+          <div class="player">
+            <audio autoload="true" autoplay="true" controls="true" id="player">
+              <source src="http://62.210.180.173:12345/salut-radio-160.mp3" type="audio/mpeg" />
+              <source src="http://62.210.180.173:12345/salut-radio-128.aac" type="audio/aac" />
+              <source src="http://62.210.180.173:12345/salut-radio-192.mp3" type="audio/mpeg" />
+              <source src="http://62.210.180.173:12345/salut-radio.ogg" type="audio/ogg" />
+              <source src="http://62.210.180.173:12345/salut-radio-128.mp3" type="audio/mpeg" />
+              <source src="http://62.210.180.173:12345/salut-radio-160.aac" type="audio/aac" />
+              <source src="http://62.210.180.173:12345/salut-radio-192.aac" type="audio/aac" />
+              <source src="http://62.210.180.173:12345/salut-radio-64.mp3" type="audio/mpeg" />
+              Ton navigateur ne sait pas jouer de la musique de radio
+            </audio>
+          </div>
+        </td>
+        <td width="auto" bgcolor="#f00" align="center">
+          <span id="en-cours" style="font-size: 200%">...</span>
+        </td>
+        <td width="200px" align="center">
+          <a href="playlist.m3u" target="_blank"><input id="salut" type="button" action="http://www.salutcestcool.com/" class="casesalut" value="la radio en m3u"></a>
+        </td>
+      </tr>
+      <tr>
+        <td width="300px">
+          <table width="100%" height="100%">
+            <tr bgcolor="#848">
+              <td valign="top" style="padding: 20px;">
+                <table id="historique">
+                  <thead>
+                    <tr>
+                      <th>Historique<br><br></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  </tbody>
+                </table>
+                <div height="100%"></div>
+              </td>
             </tr>
-          </thead>
-          <tbody>
-          </tbody>
-        </table>
+            <tr height="300px">
+              <td id="fond">
+              </td>
+            </tr>
+          </table>
+        </td>
+        <td colspan="2" width="auto" bgcolor="#08f" align="center">
+          <!--<iframe src="irc.html" width="100%" height="100%"></iframe>-->
+          <iframe height="100%" width="100%" src="chat.html"></iframe>
+        </td>
+      </tr>
+    </table>
+    <!--<div id="mode-live"><br /></div>-->
+    <!--<div id="mode-paslive">playlist <span id="mode-playlist"></span></div>-->
 
-        <a href="playlist.m3u" target="_blank"><input id="salut" type="button" action="http://www.salutcestcool.com/" class="casesalut" value="la radio en m3u"></a>
 
-        <div class="player">
-          <audio autoload="true" autoplay="true" controls="true" id="player">
-            <source src="http://62.210.180.173:12345/salut-radio-160.mp3" type="audio/mpeg" />
-            <source src="http://62.210.180.173:12345/salut-radio-128.aac" type="audio/aac" />
-            <source src="http://62.210.180.173:12345/salut-radio-192.mp3" type="audio/mpeg" />
-            <source src="http://62.210.180.173:12345/salut-radio.ogg" type="audio/ogg" />
-            <source src="http://62.210.180.173:12345/salut-radio-128.mp3" type="audio/mpeg" />
-            <source src="http://62.210.180.173:12345/salut-radio-160.aac" type="audio/aac" />
-            <source src="http://62.210.180.173:12345/salut-radio-192.aac" type="audio/aac" />
-            <source src="http://62.210.180.173:12345/salut-radio-64.mp3" type="audio/mpeg" />
-            Ton navigateur ne sait pas jouer de la musique de radio
-          </audio>
-        </div>
-        <script type="text/javascript">
-         /* Metadata */
-         function metadata() {
-           var on_metadata = function(infos) {
-             if (infos['current']['live']) {
-               if (infos['current']['live_artist'] == 'scc') {
-                 $('#en-cours').html('salut c\'est cool en direct ('+infos['current']['full_title']+')');
-               } else {
-                 $('#en-cours').html('live diffusion en direct live ('+infos['current']['full_title']+')');
-               }
-             } else {
-               $('#en-cours').html(infos['current']['full_title']);
-             }
-             if (infos['current']['live']) {
-               $('#mode-live').show();
-               $('#mode-paslive').hide();
-             } else {
-               $('#mode-live').hide();
-               $('#mode-paslive').show();
-               $('#mode-playlist').html(infos['current']['mode']);
-             }
-             $('#historique tbody tr').remove();
-             for (var i = 0; i < infos['history'].length; i++) {
-               var entry = infos['history'][i];
-               var line = $('<tr></tr>');
-               line.append($('<td></td>').html(entry['full_title']));
-               $('#historique tbody').append(line);
-             }
-           };
-           var refresh_metadata = function() {
-             $.ajax({
-               url: 'http://62.210.180.173:12348/?action=infos&format=jsonp&callback=?',
-               dataType: 'json',
-               success: on_metadata
-             });
-           };
-           refresh_metadata();
-           setInterval(refresh_metadata, 5000);
-         };
-         metadata();
-        </script>
+
+    <script type="text/javascript">
+     /* Metadata */
+     function metadata() {
+       var on_metadata = function(infos) {
+         if (infos['current']['live']) {
+           if (infos['current']['live_artist'] == 'scc') {
+             $('#en-cours').html('salut c\'est cool en direct ('+infos['current']['full_title']+')');
+           } else {
+             $('#en-cours').html('live diffusion en direct live ('+infos['current']['full_title']+')');
+           }
+         } else {
+           $('#en-cours').html(infos['current']['full_title']);
+         }
+         if (infos['current']['live']) {
+           $('#mode-live').show();
+           $('#mode-paslive').hide();
+         } else {
+           $('#mode-live').hide();
+           $('#mode-paslive').show();
+           $('#mode-playlist').html(infos['current']['mode']);
+         }
+         $('#historique tbody tr').remove();
+         for (var i = 0; i < infos['history'].length; i++) {
+           var entry = infos['history'][i];
+           var line = $('<tr></tr>');
+           line.append($('<td></td>').html(entry['full_title']));
+           $('#historique tbody').append(line);
+         }
+       };
+       var refresh_metadata = function() {
+         $.ajax({
+           url: 'http://62.210.180.173:12348/?action=infos&format=jsonp&callback=?',
+           dataType: 'json',
+           success: on_metadata
+         });
+       };
+       refresh_metadata();
+       setInterval(refresh_metadata, 5000);
+     };
+     metadata();
+    </script>
   </body>
 </html>
