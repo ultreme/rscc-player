@@ -8,7 +8,7 @@
         <title>radio</title>
 		<style type="text/css">
         body{
-            background-color: #00FF00;  
+            background-color: #00FF00;
         }
         #fond {
         background-image:url(giphy.gif);
@@ -31,7 +31,7 @@
     border-width: 5px;
     background-color: transparent;
     z-index:3;
-} 
+}
         .player{
             position:absolute;
             top:50%;
@@ -103,7 +103,15 @@
         /* Metadata */
       function metadata() {
         var on_metadata = function(infos) {
-          $('#en-cours').html(infos['current']['full_title']);
+          if (infos['current']['live']) {
+            if (infos['current']['live_artist'] == 'scc') {
+              $('#en-cours').html('salut c\'est cool en direct');
+            } else {
+              $('#en-cours').html('live diffusion en direct live');
+            }
+          } else {
+            $('#en-cours').html(infos['current']['full_title']);
+          }
           if (infos['current']['live']) {
             $('#mode-live').show();
             $('#mode-paslive').hide();
