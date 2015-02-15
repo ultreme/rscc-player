@@ -1,51 +1,106 @@
+
+<!DOCTYPE html PUBLIC>
 <html>
-  <body>
-     <img src="http://www.netanimations.net/Moving-picture-of-vibrating-speaker-animated-gif.gif" />
-     <audio autoload="true" autoplay="true" controls="true" id="player">
-      <source src="http://62.210.180.173:12345/salut-radio-160.mp3" type="audio/mpeg" />
-      <source src="http://62.210.180.173:12345/salut-radio-128.aac" type="audio/aac" />
-      <source src="http://62.210.180.173:12345/salut-radio-192.mp3" type="audio/mpeg" />
-      <source src="http://62.210.180.173:12345/salut-radio.ogg" type="audio/ogg" />
-      <source src="http://62.210.180.173:12345/salut-radio-128.mp3" type="audio/mpeg" />
-      <source src="http://62.210.180.173:12345/salut-radio-160.aac" type="audio/aac" />
-      <source src="http://62.210.180.173:12345/salut-radio-192.aac" type="audio/aac" />
-      <source src="http://62.210.180.173:12345/salut-radio-64.mp3" type="audio/mpeg" />
-      Ton navigateur ne sait pas jouer de la musique de radio
-    </audio>
-    <img src="http://www.netanimations.net/Moving-picture-of-vibrating-speaker-animated-gif.gif" />
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <link rel="icon" type="image/x-icon" href="radio.ico" />
+        <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+        <title>radio</title>
+		<style type="text/css">
+        body{
+            background-color: #00FF00;  
+        }
+        #fond {
+        background-image:url(giphy.gif);
+        position:absolute;
+        top:30%;
+        left:0px;
+        width:100%;
+        height:40%;
+        margin:0;
+        z-index:-3;
+    }
+    input.casesalut {
+    position: absolute;
+    width:15%;
+    height:6%;
+    top:94%;
+    left:85%;
+    margin:0px;
+    background-color:white;
+    border-width: 5px;
+    background-color: transparent;
+    z-index:3;
+} 
+        .player{
+            position:absolute;
+            top:50%;
+            left:50%;
+            margin-left:-150px;
+            margin-top:-15px;
+        }
+        #mode-live{
+            position:absolute;
+            top:80%;
+            left:50%;
+            width:400px;
+            margin-left:-200px;
+        }
+        #mode-paslive{
+            position:absolute;
+            top:150px;
+            left:50%;
+            width:400px;
+            margin-left:-200px;
+        }
+        #historique{
+/*            background-color: #00FF00;*/
+            position:absolute;
+            text-align: center;
+            top:70%;
+            left:50%;
+            width:1000px;
+            margin-left:-500px;
+        }
+		</style>
+	</head>
 
-    <div>En cours: <span id="en-cours" style="font-size: 200%">...</span></div>
-    <div id="mode-live"><img src="http://www.roye-noyon.fr/medias/images/live.gif" /><br />live en cours !</div>
-    <div id="mode-paslive">playlist <span id="mode-playlist"></span></div>
+	<body>
+        <div id="fond">
+        </div>
+        <center><br><br>
+        <div>En cours: <br><br><span id="en-cours" style="font-size: 200%">...</span></div>
+        <center>
+        <div id="mode-live"><br /></div>
+        <div id="mode-paslive">playlist <span id="mode-playlist"></span></div>
 
-    <hr />
+        <table id="historique">
+            <thead>
+                <tr>
+                    <th>Historique<br><br></th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
 
-    Chronom&egrave;tre de radio: <span id="duration"></span>
+        <a href="playlist.m3u" target="_blank"><input id="salut" type="button" action="http://www.salutcestcool.com/" class="casesalut" value="la radio en m3u"></a>
 
-    <hr />
-
-    <table id="historique">
-      <thead>
-        <tr>
-          <th>Historique</th>
-        </tr>
-      </thead>
-      <tbody>
-      </tbody>
-    </table>
-
-    <hr />
-
-    <img src="http://www.netanimations.net/big-bouncing-music-speakeranimated-gif.gif" />
-
-    <hr />
-
-    <a href="playlist.m3u">fichier m3u pour &eacute;couter sur ton ordi</a>
-
-
-    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
-    <script type="text/javascript">
-      /* Metadata */
+        <div class="player">
+	      	<audio autoload="true" autoplay="true" controls="true" id="player">
+        	  <source src="http://62.210.180.173:12345/salut-radio-160.mp3" type="audio/mpeg" />
+        	  <source src="http://62.210.180.173:12345/salut-radio-128.aac" type="audio/aac" />
+        	  <source src="http://62.210.180.173:12345/salut-radio-192.mp3" type="audio/mpeg" />
+        	  <source src="http://62.210.180.173:12345/salut-radio.ogg" type="audio/ogg" />
+        	  <source src="http://62.210.180.173:12345/salut-radio-128.mp3" type="audio/mpeg" />
+        	  <source src="http://62.210.180.173:12345/salut-radio-160.aac" type="audio/aac" />
+        	  <source src="http://62.210.180.173:12345/salut-radio-192.aac" type="audio/aac" />
+        	  <source src="http://62.210.180.173:12345/salut-radio-64.mp3" type="audio/mpeg" />
+        	  Ton navigateur ne sait pas jouer de la musique de radio
+        	</audio>
+        </div>
+		<script type="text/javascript">
+        /* Metadata */
       function metadata() {
         var on_metadata = function(infos) {
           $('#en-cours').html(infos['current']['full_title']);
@@ -76,35 +131,6 @@
         setInterval(refresh_metadata, 5000);
       };
       metadata();
-
-      /* Chronometre */
-      function chronometre() {
-        var player = document.getElementById('player');
-        var timer = document.getElementById('duration');
-        setInterval(function() {
-          var duration = Math.ceil(player.currentTime);
-          var hours = parseInt(duration / 3600) % 24;
-          var minutes = parseInt(duration / 60) % 60;
-          var seconds = duration % 60;
-
-          timer.textContent = (hours < 10 ? "0" + hours : hours) + ":" + (minutes < 10 ? "0" + minutes : minutes) + ":" + (seconds  < 10 ? "0" + seconds : seconds);
-                                                                                                                                      }, 1000);
-      }
-      chronometre();
-    </script>
-
-    <script type="text/javascript">
-
-      var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', 'UA-28369537-1']);
-      _gaq.push(['_trackPageview']);
-
-      (function() {
-      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-      })();
-
-    </script>
-  </body>
+		</script>
+	</body>
 </html>
