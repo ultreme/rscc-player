@@ -1,0 +1,230 @@
+<!DOCTYPE html PUBLIC>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="icon" type="image/x-icon" href="radio.ico" />
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+    <title>radio</title>
+    <style type="text/css">
+     body{
+       background-color: #080;
+       margin: 0;
+       text-align: center;
+     }
+     #fond {
+       background-image:url(giphy.gif);
+       width:300px;
+       height:300px;
+       margin:0;
+       z-index:-3;
+     }
+     #petit-fond {
+       background-image:url(giphy.gif);
+       width:150px;
+       height:150px;
+       margin:0;
+       z-index:-3;
+     }
+     input.casesalut {
+       width:100%;
+       height:40px;
+       margin:0px;
+       background-color:white;
+       border-width: 5px;
+       background-color: #0f0;
+       z-index:3;
+     }
+     #mode-live{
+       position:absolute;
+       top:80%;
+       left:50%;
+       width:400px;
+       margin-left:-200px;
+     }
+     #mode-paslive{
+       position:absolute;
+       top:150px;
+       left:50%;
+       width:400px;
+       margin-left:-200px;
+     }
+     #historique{
+     }
+     table td {
+       padding:0; margin:0;
+     }
+     table {
+       border-collapse: collapse;
+     }
+     * { overflow: hidden; }
+     #mode-sympa-content{
+	position:absolute;
+        left:0;
+        right:0;
+        top:0;
+        bottom:0;
+        margin:auto;
+        width: 550px;
+        height: 200px;
+     }
+
+    </style>
+  </head>
+  <body>
+
+    <div id="mode-sympa">
+      <div id="mode-sympa-content">
+	<table border="0" width="100%" height="100%">
+	  <tr height="150px">
+	    <td id="petit-fond" width="150px">
+	    </td>
+	    <td>
+	      <table border="0" height="100%" width="100%">
+		<tr height="50px">
+		  <td width="auto" bgcolor="#f00" align="center">
+		    <span class="en-cours" style="font-size: 200%">...</span>
+		  </td>
+		</tr>
+		<tr height="50px">
+		  <td bgcolor="#ff0" align="center">
+		    <div id="player-sympa">
+		      <div id="player">
+			<audio autoload="true" autoplay="true" controls="true" id="player">
+			  <source src="http://62.210.180.173:12345/salut-radio-160.mp3" type="audio/mpeg" />
+			  <source src="http://62.210.180.173:12345/salut-radio-128.aac" type="audio/aac" />
+			  <source src="http://62.210.180.173:12345/salut-radio-192.mp3" type="audio/mpeg" />
+			  <source src="http://62.210.180.173:12345/salut-radio.ogg" type="audio/ogg" />
+			  <source src="http://62.210.180.173:12345/salut-radio-128.mp3" type="audio/mpeg" />
+			  <source src="http://62.210.180.173:12345/salut-radio-160.aac" type="audio/aac" />
+			  <source src="http://62.210.180.173:12345/salut-radio-192.aac" type="audio/aac" />
+			  <source src="http://62.210.180.173:12345/salut-radio-64.mp3" type="audio/mpeg" />
+			  Ton navigateur ne sait pas jouer de la musique de radio
+			</audio>
+		      </div>
+		    </div>
+		  </td>
+		</tr>
+		<tr height="50px">
+		  <td bgcolor="#08f">
+		    <center>
+		      <a id="goto-mode-expert" href="#">mode expert</a>
+		    </center>
+		  </td>
+		</tr>
+	      </table>
+	    </td>
+	  </tr>
+	</table>
+      </div>
+      <img src="radio-scc.png" alt="logo" />
+    </div>
+
+    <div id="mode-expert">
+      <table border="0" width="100%" height="100%">
+	<tr height="50px">
+          <td width="300px" bgcolor="#ff0" align="center">
+	    <div id="player-expert"></div>
+          </td>
+          <td width="auto" bgcolor="#f00" align="center">
+            <span class="en-cours" style="font-size: 200%">...</span>
+          </td>
+          <td width="200px" align="center">
+            <a href="playlist.m3u" target="_blank"><input id="salut" type="button" action="http://www.salutcestcool.com/" class="casesalut" value="la radio en m3u"></a>
+          </td>
+	</tr>
+	<tr>
+          <td width="300px">
+            <table width="100%" height="100%">
+              <tr bgcolor="#848">
+		<td valign="top" style="padding: 20px;">
+                  <table id="historique">
+                    <thead>
+                      <tr>
+			<th>Historique<br><br></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                  </table>
+                  <div height="100%"></div>
+		</td>
+              </tr>
+	      <tr height="100px">
+		<td>
+		  <center>
+		    <a id="goto-mode-sympa" href="#">mode sympa</a>
+		  </center>
+		</td>
+	      </tr>
+              <tr height="300px">
+		<td id="fond">
+		</td>
+              </tr>
+            </table>
+          </td>
+          <td colspan="2" width="auto" bgcolor="#08f" align="center">
+            <iframe height="100%" width="100%" src="chat.html"></iframe>
+          </td>
+	</tr>
+      </table>
+    </div>
+
+    <script type="text/javascript">
+    $("#mode-expert").hide();
+    /* Mode expert */
+    $("#goto-mode-expert").click(function() {
+	    $("#mode-sympa").hide();
+            $("#mode-expert").show();
+            $("#player").clone().prependTo("#player-expert");
+            $("#player-sympa").html("");
+    });
+    /* Mode sympa */
+    $("#goto-mode-sympa").click(function() {
+	    $("#mode-sympa").show();
+            $("#mode-export").hide();
+            $("#player").clone().prependTo("#player-sympa");
+            $("#player-expert").html("");  
+    });
+      
+     /* Metadata */
+     function metadata() {
+       var on_metadata = function(infos) {
+         if (infos['current']['live']) {
+           if (infos['current']['live_artist'] == 'scc') {
+             $('.en-cours').each(function () { $(this).html('salut c\'est cool en direct ('+infos['current']['full_title']+')'); });
+           } else {
+             $('.en-cours').each(function () { $(this).html('live diffusion en direct live ('+infos['current']['full_title']+')'); });
+           }
+         } else {
+           $('.en-cours').each(function () { $(this).html(infos['current']['full_title']); });
+         }
+         if (infos['current']['live']) {
+           $('#mode-live').show();
+           $('#mode-paslive').hide();
+         } else {
+           $('#mode-live').hide();
+           $('#mode-paslive').show();
+           $('#mode-playlist').html(infos['current']['mode']);
+         }
+         $('#historique tbody tr').remove();
+         for (var i = 0; i < infos['history'].length; i++) {
+           var entry = infos['history'][i];
+           var line = $('<tr></tr>');
+           line.append($('<td></td>').html(entry['full_title']));
+           $('#historique tbody').append(line);
+         }
+       };
+       var refresh_metadata = function() {
+         $.ajax({
+           url: 'http://62.210.180.173:12348/?action=infos&format=jsonp&callback=?',
+           dataType: 'json',
+           success: on_metadata
+         });
+       };
+       refresh_metadata();
+       setInterval(refresh_metadata, 5000);
+     };
+     metadata();
+    </script>
+  </body>
+</html>
