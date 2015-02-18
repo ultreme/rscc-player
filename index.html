@@ -74,7 +74,54 @@
      table {
        border-collapse: collapse;
      }
-          * { overflow: hidden; }
+     * { overflow: hidden; }
+
+     @font-face {
+       font-family: 'LCDDotRegular';
+       src: url('lcddot-webfont.eot');
+       src: url('lcddot-webfont.eot?iefix') format('eot'),
+       url('lcddot-webfont.woff') format('woff'),
+       url('lcddot-webfont.ttf') format('truetype'),
+       url('lcddot-webfont.svg#webfontdF2RayaJ') format('svg');
+       font-weight: normal;
+       font-style: normal;
+     }
+     @font-face {
+       font-family: 'Digital7';
+       src: url('digital-7_italic-webfont.eot');
+       src: url('digital-7_italic-webfont?iefix') format('eot'),
+       url('digital-7_italic-webfont.woff') format('woff'),
+       url('digital-7_italic-webfont.ttf') format('truetype'),
+       url('digital-7_italic-webfont.svg#webfontdF2RayaJ') format('svg');
+       font-weight: normal;
+       font-style: normal;
+     }
+     .lcddisplay {
+       width: 100%;
+       height: 100%;
+       padding: 10px 0;
+       background: #B3CBB3; /* old browsers */
+       background: -moz-linear-gradient(top, #B3CBB3 14%, #A2BCA2 56%); /* firefox */
+       background: -webkit-gradient(linear, left top, left bottom, color-stop(14%,#B3CBB3), color-stop(56%,#A2BCA2)); /* webkit */
+       filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#B3CBB3', endColorstr='#A2BCA2',GradientType=0 ); /* ie */
+       -webkit-box-shadow: inset 1px 1px 5px #333333;
+       -moz-box-shadow: inset 1px 1px 5px #333333;
+       box-shadow: inset 1px 1px 5px #333333;    color: #000;
+       font-size: 1em;
+       line-height: 1.2em;
+       text-shadow: 2px 2px 0px #9ebb9e;
+       border-bottom: 1px rgba(255,255,255,0.2) solid;
+       border-right: 1px rgba(255,255,255,0.2) solid;
+       border-top: 1px rgba(0,0,0,0.7) solid;
+       border-left: 1px rgba(0,0,0,0.7) solid;
+     }
+     .lcddisplay.dotmatrix {
+       font-family: LCDDotRegular;
+     }
+     .lcddisplay.lcddigits {
+       font-family: Digital7;
+       font-size: 1.5em;
+     }
     </style>
   </head>
   <body>
@@ -96,7 +143,9 @@
           </div>
         </td>
         <td width="auto" bgcolor="#f00" align="center">
-          <span id="en-cours" style="font-size: 200%">...</span>
+          <div class="lcddisplay lcddigits">
+            <span id="en-cours" style="font-size: 200%">Radio salut c'est cool</span>
+          </div>
         </td>
         <td width="200px" align="center">
           <a href="playlist.m3u" target="_blank"><input id="salut" type="button" action="http://www.salutcestcool.com/" class="casesalut" value="la radio en m3u"></a>
