@@ -1,0 +1,238 @@
+<!DOCTYPE html PUBLIC>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="icon" type="image/x-icon" href="radio.ico" />
+    <!--<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.2.min.js"></script>-->
+    <script type="text/javascript" src="jquery-1.11.2.min.js"></script>
+    <title>radio</title>
+    <style type="text/css">
+     body{
+       background-color: #080;
+       margin: 0;
+       text-align: center;
+     }
+     #fond {
+       background-image:url(giphy.gif);
+       /*position:absolute;*/
+       /*top:30%;*/
+       /*left:0px;*/
+       width:300px;
+       height:300px;
+       margin:0;
+       z-index:-3;
+     }
+     input.casesalut {
+     /*position: relative;*/
+       width:100%;
+       height:40px;
+       /*top:94%;
+       left:85%;*/
+       margin:0px;
+       background-color:white;
+       border-width: 5px;
+       background-color: #0f0;
+       z-index:3;
+     }
+     .player{
+     /*
+       position:relative;
+       top:50%;
+       left:50%;
+       margin-left:-150px;
+     margin-top:-15px;
+     */
+     }
+     #mode-live{
+       position:absolute;
+       top:80%;
+       left:50%;
+       width:400px;
+       margin-left:-200px;
+     }
+     #mode-paslive{
+       position:absolute;
+       top:150px;
+       left:50%;
+       width:400px;
+       margin-left:-200px;
+     }
+     #historique{
+       /*            background-color: #00FF00;*/
+       /*position:absolute;*/
+       /*text-align: center;
+       top:70%;
+       left:50%;
+       width:1000px;
+       margin-left:-500px;
+       */
+     }
+     table td {
+       padding:0; margin:0;
+     }
+
+     table {
+       border-collapse: collapse;
+     }
+     * { overflow: hidden; }
+
+     @font-face {
+       font-family: 'LCDDotRegular';
+       src: url('lcddot-webfont.eot');
+       src: url('lcddot-webfont.eot?iefix') format('eot'),
+       url('lcddot-webfont.woff') format('woff'),
+       url('lcddot-webfont.ttf') format('truetype'),
+       url('lcddot-webfont.svg#webfontdF2RayaJ') format('svg');
+       font-weight: normal;
+       font-style: normal;
+     }
+     @font-face {
+       font-family: 'Digital7';
+       src: url('digital-7_italic-webfont.eot');
+       src: url('digital-7_italic-webfont?iefix') format('eot'),
+       url('digital-7_italic-webfont.woff') format('woff'),
+       url('digital-7_italic-webfont.ttf') format('truetype'),
+       url('digital-7_italic-webfont.svg#webfontdF2RayaJ') format('svg');
+       font-weight: normal;
+       font-style: normal;
+     }
+     .lcddisplay {
+       width: 100%;
+       height: 100%;
+       padding: 10px 0;
+       background: #B3CBB3; /* old browsers */
+       background: -moz-linear-gradient(top, #B3CBB3 14%, #A2BCA2 56%); /* firefox */
+       background: -webkit-gradient(linear, left top, left bottom, color-stop(14%,#B3CBB3), color-stop(56%,#A2BCA2)); /* webkit */
+       filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#B3CBB3', endColorstr='#A2BCA2',GradientType=0 ); /* ie */
+       -webkit-box-shadow: inset 1px 1px 5px #333333;
+       -moz-box-shadow: inset 1px 1px 5px #333333;
+       box-shadow: inset 1px 1px 5px #333333;    color: #000;
+       font-size: 1em;
+       line-height: 1.2em;
+       text-shadow: 2px 2px 0px #9ebb9e;
+       border-bottom: 1px rgba(255,255,255,0.2) solid;
+       border-right: 1px rgba(255,255,255,0.2) solid;
+       border-top: 1px rgba(0,0,0,0.7) solid;
+       border-left: 1px rgba(0,0,0,0.7) solid;
+     }
+     .lcddisplay.dotmatrix {
+       font-family: LCDDotRegular;
+     }
+     .lcddisplay.lcddigits {
+       font-family: Digital7;
+       font-size: 1.5em;
+     }
+     #historique tbody tr {
+       border-top: 1px solid black;
+     }
+     #historique td {
+       padding: 3px;
+     }
+    </style>
+  </head>
+  <body>
+    <table border="0" width="100%" height="100%">
+      <tr height="50px">
+        <td width="300px" bgcolor="#ff0" align="center">
+          <div class="player">
+            <audio autoload="true" autoplay="true" controls="true" id="player">
+              <source src="http://62.210.180.173:12345/salut-radio-160.mp3" type="audio/mpeg" />
+              <source src="http://62.210.180.173:12345/salut-radio-128.aac" type="audio/aac" />
+              <source src="http://62.210.180.173:12345/salut-radio-192.mp3" type="audio/mpeg" />
+              <source src="http://62.210.180.173:12345/salut-radio.ogg" type="audio/ogg" />
+              <source src="http://62.210.180.173:12345/salut-radio-128.mp3" type="audio/mpeg" />
+              <source src="http://62.210.180.173:12345/salut-radio-160.aac" type="audio/aac" />
+              <source src="http://62.210.180.173:12345/salut-radio-192.aac" type="audio/aac" />
+              <source src="http://62.210.180.173:12345/salut-radio-64.mp3" type="audio/mpeg" />
+              Ton navigateur ne sait pas jouer de la musique de radio
+            </audio>
+          </div>
+        </td>
+        <td width="auto" bgcolor="#f00" align="center">
+          <div class="lcddisplay">
+            <span id="en-cours" style="font-size: 200%">Radio salut c'est cool</span>
+          </div>
+        </td>
+        <td width="200px" align="center">
+          <a href="playlist.m3u" target="_blank"><input id="salut" type="button" action="http://www.salutcestcool.com/" class="casesalut" value="la radio en m3u"></a>
+        </td>
+      </tr>
+      <tr>
+        <td width="300px">
+          <table width="100%" height="100%">
+            <tr bgcolor="#848">
+              <td valign="top" style="padding: 20px;">
+                <table id="historique">
+                  <thead>
+                    <tr>
+                      <th>Historique<br><br></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  </tbody>
+                </table>
+                <div height="100%"></div>
+              </td>
+            </tr>
+            <tr height="300px">
+              <td id="fond">
+                <!--<img src="salut2.gif" />-->
+                <img src="scc%20radio.png" />
+              </td>
+            </tr>
+          </table>
+        </td>
+        <td colspan="2" width="auto" bgcolor="#08f" align="center">
+          <!--<iframe src="irc.html" width="100%" height="100%"></iframe>-->
+          <iframe height="100%" width="100%" src="chat.html"></iframe>
+        </td>
+      </tr>
+    </table>
+    <!--<div id="mode-live"><br /></div>-->
+    <!--<div id="mode-paslive">playlist <span id="mode-playlist"></span></div>-->
+
+
+
+    <script type="text/javascript">
+     /* Metadata */
+     function metadata() {
+       var on_metadata = function(infos) {
+         if (infos['current']['live']) {
+           if (infos['current']['live_artist'] == 'scc') {
+             $('#en-cours').html('salut c\'est cool en direct ('+infos['current']['full_title']+')');
+           } else {
+             $('#en-cours').html('live diffusion en direct live ('+infos['current']['full_title']+')');
+           }
+         } else {
+           $('#en-cours').html(infos['current']['full_title']);
+         }
+         if (infos['current']['live']) {
+           $('#mode-live').show();
+           $('#mode-paslive').hide();
+         } else {
+           $('#mode-live').hide();
+           $('#mode-paslive').show();
+           $('#mode-playlist').html(infos['current']['mode']);
+         }
+         $('#historique tbody tr').remove();
+         for (var i = 0; i < infos['history'].length; i++) {
+           var entry = infos['history'][i];
+           var line = $('<tr></tr>');
+           line.append($('<td></td>').html(entry['full_title']));
+           $('#historique tbody').append(line);
+         }
+       };
+       var refresh_metadata = function() {
+         $.ajax({
+           url: 'http://62.210.180.173:12348/?action=infos&format=jsonp&callback=?',
+           dataType: 'json',
+           success: on_metadata
+         });
+       };
+       refresh_metadata();
+       setInterval(refresh_metadata, 5000);
+     };
+     metadata();
+    </script>
+  </body>
+</html>
