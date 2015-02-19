@@ -123,94 +123,188 @@
        unicode-bidi: bidi-override;
        direction: rtl;
      }
+     #mode-sympa-content{
+	position:absolute;
+        left:0;
+        right:0;
+        top:0;
+        bottom:0;
+        margin:auto;
+        width: 550px;
+        height: 200px;
+     }
+     #mode-sympa {
+        background-image: url('radio-scc.png');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: center;
+        width: 100%;
+        height: 100%;
+     }
+     #petit-fond {
+       background-image:url(giphy.gif);
+       width:200px;
+       height:150px;
+       margin:0;
+       z-index:-3;
+     }
     </style>
   </head>
   <body>
-    <table border="0" width="100%" height="100%">
-      <tr height="50px">
-        <td width="300px" bgcolor="#ff0" align="center">
-          <div class="player">
-            <audio autoload="true" autoplay="true" controls="true" id="player">
-              <source src="http://62.210.180.173:12345/salut-radio-160.mp3" type="audio/mpeg" />
-              <source src="http://62.210.180.173:12345/salut-radio-128.aac" type="audio/aac" />
-              <source src="http://62.210.180.173:12345/salut-radio-192.mp3" type="audio/mpeg" />
-              <source src="http://62.210.180.173:12345/salut-radio.ogg" type="audio/ogg" />
-              <source src="http://62.210.180.173:12345/salut-radio-128.mp3" type="audio/mpeg" />
-              <source src="http://62.210.180.173:12345/salut-radio-160.aac" type="audio/aac" />
-              <source src="http://62.210.180.173:12345/salut-radio-192.aac" type="audio/aac" />
-              <source src="http://62.210.180.173:12345/salut-radio-64.mp3" type="audio/mpeg" />
-              Ton navigateur ne sait pas jouer de la musique de radio
-            </audio>
-          </div>
-        </td>
-        <td width="auto" bgcolor="#f00" align="center">
-          <div class="lcddisplay">
-            <span id="en-cours" style="font-size: 200%">Radio salut c'est cool</span>
-          </div>
-        </td>
-        <td width="200px" align="center">
-          <a href="playlist.m3u" target="_blank"><input id="salut" type="button" action="http://www.salutcestcool.com/" class="casesalut" value="la radio en m3u"></a>
-        </td>
-      </tr>
-      <tr>
-        <td width="300px">
-          <table width="100%" height="100%">
-            <tr bgcolor="#EC50FC">
-              <td valign="top" style="padding: 10px">
-                <table id="historique">
-                  <thead>
-                    <tr>
-                      <th>Historique<br><br></th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                  </tbody>
-                </table>
-                <div height="100%"></div>
-              </td>
-            </tr>
-            <tr height="300px">
-              <td id="fond" align="center">
-                <!--<img src="salut2.gif" />-->
-                <img src="scc%20radio.png" width="300" height="300" />
-              </td>
-            </tr>
-          </table>
-        </td>
-        <td colspan="2" width="auto" bgcolor="#08f" align="center">
-          <table width="100%" height="100%">
-            <tr>
-              <td>
-                <!--<iframe src="irc.html" width="100%" height="100%"></iframe>-->
-                <iframe height="100%" width="100%" src="chat.html"></iframe>
-              </td>
-            </tr>
-            <tr height="20px" bgcolor="#44F" style="color: white">
-              <td style="padding: 10px 10px">
-                vous pouvez nous envoyer vos demos &agrave; <span class="reverse">moc.liamg@looctsectulas</span>. En plus de les &eacute;couter, nous les passerons peut-&ecirc;tre lors de nos mixs. (&ccedil;a fonctionne aussi pour les jingles)
-              </td>
-            </tr>
-          </table>
-        </td>
-      </tr>
-    </table>
-    <!--<div id="mode-live"><br /></div>-->
-    <!--<div id="mode-paslive">playlist <span id="mode-playlist"></span></div>-->
 
+    <div id="mode-sympa">
+      <div id="mode-sympa-content">
+	<table border="0" width="100%" height="100%">
+	  <tr height="150px">
+	    <td id="petit-fond" width="150px">
+              <img src="scc%20radio.png" width="200" height="200" />
+	    </td>
+	    <td>
+	      <table border="0" height="100%" width="100%">
+		<tr height="50px">
+		  <td width="auto" bgcolor="#f00" align="center">
+		    <span class="en-cours" style="font-size: 200%">Radio salut c'est cool</span>
+		  </td>
+		</tr>
+		<tr height="50px">
+		  <td bgcolor="#ff0" align="center">
+		    <div id="player-sympa">
+		      <div id="player">
+			<a href="#" id="player-pause"><img src="scc-pause.png" alt="pause" /></a>
+			<a href="#" id="player-play"><img src="scc-play.png" alt="play" /></a>
+			<a href="#" id="player-stop"><img src="scc-stop.png" alt="stop" /></a>
+		      </div>
+		    </div>
+		  </td>
+		</tr>
+		<tr height="50px">
+		  <td bgcolor="#08f">
+		    <center>
+		      <a id="goto-mode-expert" href="#">mode expert</a>
+		    </center>
+		  </td>
+		</tr>
+	      </table>
+	    </td>
+	  </tr>
+	</table>
+      </div>
+    </div>
 
+    <div id="mode-expert">    
+      <table border="0" width="100%" height="100%">
+	<tr height="50px">
+          <td width="300px" bgcolor="#ff0" align="center">
+	    <div id="player-expert"></div>
+          </td>
+          <td width="auto" bgcolor="#f00" align="center">
+            <div class="lcddisplay">
+              <span class="en-cours" style="font-size: 200%">Radio salut c'est cool</span>
+            </div>
+          </td>
+          <td width="200px" align="center">
+            <a href="playlist.m3u" target="_blank"><input id="salut" type="button" action="http://www.salutcestcool.com/" class="casesalut" value="la radio en m3u"></a>
+          </td>
+	</tr>
+	<tr>
+          <td width="300px">
+            <table width="100%" height="100%">
+              <tr bgcolor="#EC50FC">
+		<td valign="top" style="padding: 10px">
+                  <table id="historique">
+                    <thead>
+                      <tr>
+			<th>Historique<br><br></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                  </table>
+                  <div height="100%"></div>
+		</td>
+              </tr>
+	      <tr height="100px">
+		<td>
+		  <center>
+		    <a id="goto-mode-sympa" href="#">mode sympa</a>
+		  </center>
+		</td>
+	      </tr>
+              <tr height="300px">
+		<td id="fond" align="center">
+                  <!--<img src="salut2.gif" />-->
+                  <img src="scc%20radio.png" width="300" height="300" />
+		</td>
+              </tr>
+            </table>
+          </td>
+          <td colspan="2" width="auto" bgcolor="#08f" align="center">
+            <table width="100%" height="100%">
+              <tr>
+		<td>
+                  <!--<iframe src="irc.html" width="100%" height="100%"></iframe>-->
+                  <iframe height="100%" width="100%" src="chat.html"></iframe>
+		</td>
+              </tr>
+              <tr height="20px" bgcolor="#44F" style="color: white">
+		<td style="padding: 10px 10px">
+                  vous pouvez nous envoyer vos demos &agrave; <span class="reverse">moc.liamg@looctsectulas</span>. En plus de les &eacute;couter, nous les passerons peut-&ecirc;tre lors de nos mixs. (&ccedil;a fonctionne aussi pour les jingles)
+		</td>
+              </tr>
+            </table>
+          </td>
+	</tr>
+      </table>
+      <!--<div id="mode-live"><br /></div>-->
+      <!--<div id="mode-paslive">playlist <span id="mode-playlist"></span></div>-->
+    </div>
+
+    <div id="player-cached">
+      <audio autoload="true" autoplay="true" controls="true" id="player-background">
+	<source src="http://62.210.180.173:12345/salut-radio-160.mp3" type="audio/mpeg" />
+	<source src="http://62.210.180.173:12345/salut-radio-128.aac" type="audio/aac" />
+	<source src="http://62.210.180.173:12345/salut-radio-192.mp3" type="audio/mpeg" />
+	<source src="http://62.210.180.173:12345/salut-radio.ogg" type="audio/ogg" />
+	<source src="http://62.210.180.173:12345/salut-radio-128.mp3" type="audio/mpeg" />
+	<source src="http://62.210.180.173:12345/salut-radio-160.aac" type="audio/aac" />
+	<source src="http://62.210.180.173:12345/salut-radio-192.aac" type="audio/aac" />
+	<source src="http://62.210.180.173:12345/salut-radio-64.mp3" type="audio/mpeg" />
+      </audio>
+    </div>
 
     <script type="text/javascript">
+    /* Mode expert */
+    $("#player-cached").hide();
+    $("#mode-expert").hide();
+    $("#goto-mode-expert").click(function() {
+	    $("#mode-sympa").hide();
+            $("#mode-expert").show();
+            $("#player").appendTo("#player-expert");
+            $("#player-sympa").html("");
+    });
+    /* Mode sympa */
+    $("#goto-mode-sympa").click(function() {
+            $("#mode-export").hide();
+	    $("#mode-sympa").show();
+            $("#player").appendTo("#player-sympa");
+            $("#player-expert").html("");  
+    });
+    /* Controles */
+    $("#player-pause").click(function () { $("#player-background").trigger('pause'); });
+    $("#player-play").click(function () { $("#player-background").trigger('play'); });
+    $("#player-stop").click(function () { $("#player-background").trigger('pause').prop("currentTime", 0); });
+
      /* Metadata */
      function metadata() {
        var on_metadata = function(infos) {
          if (infos['current']['live']) {
            if (infos['current']['live_artist'] == 'scc') {
-             $('#en-cours').html('salut c\'est cool en direct ('+infos['current']['full_title']+')');
+             $('.en-cours').html('salut c\'est cool en direct ('+infos['current']['full_title']+')');
            } else {
-             $('#en-cours').html('live diffusion en direct live ('+infos['current']['full_title']+')');
+             $('.en-cours').html('live diffusion en direct live ('+infos['current']['full_title']+')');
            }
          } else {
-           $('#en-cours').html(infos['current']['full_title']);
+           $('.en-cours').html(infos['current']['full_title']);
          }
          if (infos['current']['live']) {
            $('#mode-live').show();
