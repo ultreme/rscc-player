@@ -172,7 +172,6 @@
 		      <div id="player">
 			<a href="#" id="player-pause"><img src="scc-pause.png" alt="pause" /></a>
 			<a href="#" id="player-play"><img src="scc-play.png" alt="play" /></a>
-			<a href="#" id="player-stop"><img src="scc-stop.png" alt="stop" /></a>
 		      </div>
 		    </div>
 		  </td>
@@ -196,6 +195,7 @@
 	<tr height="50px">
           <td width="300px" bgcolor="#ff0" align="center">
 	    <div id="player-expert"></div>
+	    <a id="goto-mode-sympa" href="#">mode sympa</a>
           </td>
           <td width="auto" bgcolor="#f00" align="center">
             <div class="lcddisplay">
@@ -223,13 +223,6 @@
                   <div height="100%"></div>
 		</td>
               </tr>
-	      <tr height="100px">
-		<td>
-		  <center>
-		    <a id="goto-mode-sympa" href="#">mode sympa</a>
-		  </center>
-		</td>
-	      </tr>
               <tr height="300px">
 		<td id="fond" align="center">
                   <!--<img src="salut2.gif" />-->
@@ -292,7 +285,6 @@
     /* Controles */
     $("#player-pause").click(function () { $("#player-background").trigger('pause'); });
     $("#player-play").click(function () { $("#player-background").trigger('play'); });
-    $("#player-stop").click(function () { $("#player-background").trigger('pause').prop("currentTime", 0); });
 
      /* Metadata */
      function metadata() {
