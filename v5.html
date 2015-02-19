@@ -56,14 +56,7 @@
        margin-left:-200px;
      }
      #historique{
-       /*            background-color: #00FF00;*/
-       /*position:absolute;*/
-       /*text-align: center;
-       top:70%;
-       left:50%;
-       width:1000px;
-       margin-left:-500px;
-       */
+       color: black;
      }
      table td {
        padding:0; margin:0;
@@ -124,7 +117,11 @@
        border-top: 1px solid black;
      }
      #historique td {
-       padding: 3px;
+       padding: 1px;
+     }
+     .reverse {
+       unicode-bidi: bidi-override;
+       direction: rtl;
      }
     </style>
   </head>
@@ -158,8 +155,8 @@
       <tr>
         <td width="300px">
           <table width="100%" height="100%">
-            <tr bgcolor="#B1CAFF">
-              <td valign="top" style="padding: 20px;">
+            <tr bgcolor="#EC50FC">
+              <td valign="top" style="padding: 10px">
                 <table id="historique">
                   <thead>
                     <tr>
@@ -173,16 +170,27 @@
               </td>
             </tr>
             <tr height="300px">
-              <td id="fond">
+              <td id="fond" align="center">
                 <!--<img src="salut2.gif" />-->
-                <img src="scc%20radio.png" />
+                <img src="scc%20radio.png" width="300" height="300" />
               </td>
             </tr>
           </table>
         </td>
         <td colspan="2" width="auto" bgcolor="#08f" align="center">
-          <!--<iframe src="irc.html" width="100%" height="100%"></iframe>-->
-          <iframe height="100%" width="100%" src="chat.html"></iframe>
+          <table width="100%" height="100%">
+            <tr>
+              <td>
+                <!--<iframe src="irc.html" width="100%" height="100%"></iframe>-->
+                <iframe height="100%" width="100%" src="chat.html"></iframe>
+              </td>
+            </tr>
+            <tr height="20px" bgcolor="#44F" style="color: white">
+              <td style="padding: 10px 10px">
+                vous pouvez nous envoyer vos demos &agrave; <span class="reverse">moc.liamg@looctsectulas</span>. En plus de les &eacute;couter, nous les passerons peut-&ecirc;tre lors de nos mixs. (&ccedil;a fonctionne aussi pour les jingles)
+              </td>
+            </tr>
+          </table>
         </td>
       </tr>
     </table>
