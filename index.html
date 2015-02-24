@@ -172,6 +172,8 @@
 		      <div id="player">
 			<a href="#" id="player-pause"><img src="scc-pause.png" alt="pause" /></a>
 			<a href="#" id="player-play"><img src="scc-play.png" alt="play" /></a>
+			<a href="#" id="player-plus"><img src="plus.png" alt="plus" /></a>
+			<a href="#" id="player-moins"><img src="moins.png" alt="moins" /></a>
 		      </div>
 		    </div>
 		  </td>
@@ -281,10 +283,31 @@
             $("#player").appendTo("#player-sympa");
             $("#player-expert").html("");  
     });
+
+    var up = function () {
+       var volume = $("#player-background").prop("volume") + 0.2;
+       if (volume > 1) {
+          volume = 1;
+       }
+       $("#player-background").prop("volume", volume);
+    }
+
+    var down = function () {
+       var volume = $("#player-background").prop("volume") - 0.2;
+       if (volume < 0) {
+          volume = 0;
+       }
+       $("#player-background").prop("volume", volume);
+    }
+		 
     /* Controles */
     $("#player-pause").click(function () { $("#player-background").trigger('pause'); });
     $("#player-play").click(function () { $("#player-background").trigger('play'); });
+    $("#player-plus").click(function () { up(); });
+    $("#player-moins").click(function () { down(); });
 
+
+    
      /* Metadata */
      function metadata() {
        var on_metadata = function(infos) {
